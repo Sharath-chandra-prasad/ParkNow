@@ -77,3 +77,6 @@ process.on('unhandledRejection', (err) => {
   // Optional: close server gracefully before exiting
   process.exit(1);
 });
+
+// Export the Express API for Vercel Serverless Functions
+module.exports = app;
