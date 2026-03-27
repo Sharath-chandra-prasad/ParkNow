@@ -189,7 +189,7 @@ router.get('/stats', protect, admin, async (req, res) => {
 // @route   GET /api/bookings
 // @desc    Get all bookings (admin)
 // @access  Private/Admin
-router.get('/', protect, admin, async (req, res) => {
+router.get('/', protect, admin, async (req, res, next) => {
   try {
     const bookings = await Booking.find()
       .populate('parkingArea', 'name location')

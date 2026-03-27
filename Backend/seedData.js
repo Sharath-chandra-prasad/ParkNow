@@ -10,12 +10,16 @@ dotenv.config();
 // Attempt to use Google DNS to resolve Atlas SRV records
 dns.setServers(['8.8.8.8', '8.8.4.4']);
 
-const cities = [
-  'Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Ahmedabad', 
-  'Chennai', 'Kolkata', 'Surat', 'Pune', 'Jaipur',
-  'Lucknow', 'Kanpur', 'Nagpur', 'Indore', 'Thane',
-  'Bhopal', 'Visakhapatnam', 'Pimpri-Chinchwad', 'Patna', 'Vadodara'
-];
+const cityStateMap = {
+  'Mumbai': 'Maharashtra', 'Delhi': 'Delhi', 'Bangalore': 'Karnataka',
+  'Hyderabad': 'Telangana', 'Ahmedabad': 'Gujarat', 'Chennai': 'Tamil Nadu',
+  'Kolkata': 'West Bengal', 'Surat': 'Gujarat', 'Pune': 'Maharashtra',
+  'Jaipur': 'Rajasthan', 'Lucknow': 'Uttar Pradesh', 'Kanpur': 'Uttar Pradesh',
+  'Nagpur': 'Maharashtra', 'Indore': 'Madhya Pradesh', 'Thane': 'Maharashtra',
+  'Bhopal': 'Madhya Pradesh', 'Visakhapatnam': 'Andhra Pradesh',
+  'Pimpri-Chinchwad': 'Maharashtra', 'Patna': 'Bihar', 'Vadodara': 'Gujarat',
+};
+const cities = Object.keys(cityStateMap);
 
 const locations = [
   'Railway Station', 'Airport', 'City Center Mall', 'IT Park', 
@@ -60,6 +64,7 @@ const seedData = async () => {
         areaPromises.push(new ParkingArea({
             name,
             location,
+            state: cityStateMap[city],
             totalSlots,
             pricePerHour,
             description: `Premium parking facility in the heart of ${city}. Secure, monitored, and open 24/7.`

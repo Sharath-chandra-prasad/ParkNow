@@ -101,11 +101,7 @@ const ManageBookings = () => {
               {filteredBookings.map((booking) => (
                 <tr key={booking._id}>
                   <td>
-                    <div>
-                      <strong>{booking.user?.name || 'N/A'}</strong>
-                      <br />
-                      <small>{booking.user?.email || ''}</small>
-                    </div>
+                    <strong>{booking.user?.name || 'N/A'}</strong>
                   </td>
                   <td>
                     <div className="cell-with-icon">

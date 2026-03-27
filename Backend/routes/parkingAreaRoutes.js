@@ -57,11 +57,12 @@ router.get('/:id', async (req, res) => {
 // @access  Private/Admin
 router.post('/', protect, admin, async (req, res) => {
   try {
-    const { name, location, totalSlots, pricePerHour, description } = req.body;
+    const { name, location, state, totalSlots, pricePerHour, description } = req.body;
 
     const parkingArea = await ParkingArea.create({
       name,
       location,
+      state,
       totalSlots,
       pricePerHour,
       description,
@@ -89,7 +90,7 @@ router.post('/', protect, admin, async (req, res) => {
 // @access  Private/Admin
 router.put('/:id', protect, admin, async (req, res) => {
   try {
-    const { name, location, totalSlots, pricePerHour, description } = req.body;
+    const { name, location, state, totalSlots, pricePerHour, description } = req.body;
 
     const parkingArea = await ParkingArea.findById(req.params.id);
     if (!parkingArea) {
@@ -101,6 +102,7 @@ router.put('/:id', protect, admin, async (req, res) => {
 
     parkingArea.name = name || parkingArea.name;
     parkingArea.location = location || parkingArea.location;
+    parkingArea.state = state !== undefined ? state : parkingArea.state;
     parkingArea.totalSlots = totalSlots || parkingArea.totalSlots;
     parkingArea.pricePerHour = pricePerHour !== undefined ? pricePerHour : parkingArea.pricePerHour;
     parkingArea.description = description !== undefined ? description : parkingArea.description;

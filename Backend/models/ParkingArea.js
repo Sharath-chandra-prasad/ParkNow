@@ -11,6 +11,11 @@ const parkingAreaSchema = new mongoose.Schema({
     required: [true, 'Please provide location'],
     trim: true,
   },
+  state: {
+    type: String,
+    trim: true,
+    default: '',
+  },
   totalSlots: {
     type: Number,
     required: [true, 'Please provide total number of slots'],
